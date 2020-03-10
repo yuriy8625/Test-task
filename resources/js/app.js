@@ -21,15 +21,12 @@ import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css'
 Vue.use(Vuetify)
 
-import VeeValidate from 'vee-validate';
-Vue.use(VeeValidate);
-
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 
 export default new Vuetify({
     icons: {
-        iconfont: 'mdiSvg', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
+        iconfont: 'mdiSvg',
     },
 })
 
