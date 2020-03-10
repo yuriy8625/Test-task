@@ -1,16 +1,17 @@
 <template>
-    <v-app style="border: 1px solid dimgray; padding: 20px; border-radius: 5px; width: 90%;">
-        <ValidationObserver ref="observer" v-slot="{ errors }">
-            <form>
+    <v-app style="border: 1px solid dimgray; padding: 20px; border-radius: 5px;">
+        <ValidationObserver ref="observer" v-slot="{ handleSubmit }">
+            <form @submit.prevent="handleSubmit(save)">
                 <div class="text-center">
                     <v-dialog v-if="preview" v-model="dialogPhoto" width="500">
                         <template v-slot:activator="{ on }">
-                            <v-btn style="position: absolute; top: 0; left: 150px" class="mx-2" color="red" dark fab
+                            <v-btn style="position: absolute; top: 0; left: 150px" class="mx-2" color="red" dark
+                                   fab
                                    x-small @click="deletePhoto">
                                 <v-icon dark center>mdi-delete</v-icon>
                             </v-btn>
                             <v-img dark v-on="on" :src="preview" aspect-ratio="2" contain
-                                   style="width: 150px; height: 150px"/>
+                                   style="width: 150px; height: 150px; margin-bottom: 20px"/>
                         </template>
                         <v-card>
                             <v-card-title class="headline grey lighten-2" primary-title>Photo</v-card-title>
@@ -45,17 +46,16 @@
                 <v-overlay :value="overlay">
                     <v-progress-circular indeterminate size="64"></v-progress-circular>
                 </v-overlay>
-
-                <ValidationProvider v-slot="{ errors }" name="Name" rules="required|max:256">
+                <ValidationProvider v-slot="{ errors }" name="Name" rules="required|max:191">
                     <v-label>Name*</v-label>
                     <v-text-field
                         v-model="employee.name"
                         :counter="256"
                         :error-messages="errors"
                         placeholder="Name"
-                        required
                         solo
                     ></v-text-field>
+                    <span>{{ errors[0] }}</span>
                 </ValidationProvider>
                 <ValidationProvider v-slot="{ errors }" name="Phone" rules="required|customPhone">
                     <v-label>Phone*</v-label>
@@ -64,7 +64,6 @@
                         v-model="employee.phone"
                         :error-messages="errors"
                         placeholder="Phone"
-                        required
                         solo
                     ></v-text-field>
                 </ValidationProvider>
@@ -74,7 +73,6 @@
                         v-model="employee.email"
                         :error-messages="errors"
                         placeholder="E-mail"
-                        required
                         solo
                     ></v-text-field>
                 </ValidationProvider>
@@ -86,6 +84,7 @@
                         item-value="id"
                         v-model="employee.position_id"
                         :error-messages="errors"
+                        placeholder="Position"
                         :clearable="true"
                         solo
                     ></v-autocomplete>
@@ -93,12 +92,8 @@
 
                 <ValidationProvider v-slot="{ errors }" name="Salary" rules="required|max_value:500000">
                     <v-label>Salary</v-label>
-                    <v-text-field
-                        id="salary"
-                        v-model="employee.salary"
-                        :error-messages="errors"
-                        solo
-                    ></v-text-field>
+                    <v-text-field id="salary" v-model="employee.salary" :error-messages="errors"
+                                  solo></v-text-field>
                 </ValidationProvider>
 
                 <v-label>Head</v-label>
@@ -153,7 +148,7 @@
                 </v-col>
                 <v-col cols="12" style="text-align: right; margin: 20px">
                     <v-btn class="ma-2" tile color="dimgray" outlined @click="cancel">Cancel</v-btn>
-                    <v-btn class="ma-2" tile color="dimgray" dark @click="save">Save</v-btn>
+                    <v-btn class="ma-2" tile color="dimgray" dark type="submit">Save</v-btn>
                 </v-col>
             </form>
         </ValidationObserver>
@@ -162,8 +157,8 @@
 </template>
 
 <script>
+    import {extend, ValidationObserver, ValidationProvider, setInteractionMode, Validator} from 'vee-validate'
     import {required, email, max, size, dimensions, ext} from 'vee-validate/dist/rules'
-    import {extend, ValidationObserver, ValidationProvider, setInteractionMode} from 'vee-validate'
     import Inputmask from 'inputmask'
     import moment from 'moment'
     import axios from 'axios'
@@ -203,11 +198,11 @@
     })
     extend('size', {
         ...size,
-        message: 'Format file jpg,png Up 5MB, the minimum size of 300x300px ',
+        message: 'Format file jpg,png Up 5MB, the minimum size of 300x300px',
     })
     extend('dimensions', {
         ...dimensions,
-        message: 'Format file jpg,png Up 5MB, the minimum size of 300x300px ',
+        message: 'Format file jpg,png Up 5MB, the minimum size of 300x300px',
 
         validate: (value, res) => {
             if (document.getElementById('file').files[0]) {
@@ -220,9 +215,8 @@
                     }
                 };
                 img.src = _URL.createObjectURL(file);
-            } else {
-                return true;
             }
+            return true;
         }
     })
     extend('ext', {
@@ -232,26 +226,16 @@
     export default {
         name: 'FormEmployee',
         components: {ValidationProvider, ValidationObserver},
-        props: {
-            employee: {
-                type: Object,
-            },
-            positions: {
-                type: Array,
-            },
-            parents: {
-                type: Array,
-            },
-        },
+        props: ['employeeBase', 'positions', 'parents'],
         data() {
             return {
-                date: this.employee['employment_at'] || '',
+                date: '',
                 menu: false,
                 dialogPhoto: false,
-                action: '/admin/employees/edit/' + this.employee.id,
                 file: null,
-                preview: this.employee.photo || null,
+                preview: null,
                 overlay: false,
+                employee: {},
             }
         },
         computed: {
@@ -264,9 +248,19 @@
                     return "Upload photo"
                 }
                 return "Browse";
-            }
+            },
+            action() {
+                if (this.employee.id != undefined) {
+                    return '/admin/employees/edit/' + this.employee['id'];
+                } else {
+                    return '/admin/employees/edit/';
+                }
+            },
         },
         mounted() {
+            this.employee = this.$attrs.employeebase
+            this.date = this.employee['employment_at'] || moment().format('DD.MM.YY');
+            this.preview = this.employee['photo'] || null;
             new Inputmask("+999(99) 999 99 99").mask(document.getElementById('phone'));
             new Inputmask('decimal', {
                 'alias': 'numeric',
@@ -287,16 +281,18 @@
                             'Content-Type': 'multipart/form-data'
                         }
                     }).then(response => {
-                        console.log('response', response)
                         this.overlay = false;
-                        // window.location.href = '/admin/employees/'
+                        window.location.href = '/admin/employees/'
                     }).catch(error => {
                         let errors = error.response.data.errors;
-                        // this.$validator.errors.add({field: 'salary', msg: 'nope'})
-                        // for (let key in errors){
-                        //     // this.$refs.observer.errors[this.capitalize(key)] = errors[key];
-                        // }
+                        for (let key in errors) {
+                            var error = {};
+                            var name = key.charAt(0).toUpperCase() + key.slice(1);
+                            error[name] = [errors[key][0]]
+                            this.$refs.observer.setErrors(error);
+                        }
                         this.overlay = false;
+                        window.scrollTo({top: 0, behavior: 'smooth'});
                     })
                 }
             },
@@ -318,7 +314,7 @@
                     formData.append(key, model[key]);
                 }
 
-                if (typeof this.file) {
+                if (this.file !== null) {
                     formData.append('file', this.file);
                 }
 
@@ -348,3 +344,4 @@
         background: none;
     }
 </style>
+

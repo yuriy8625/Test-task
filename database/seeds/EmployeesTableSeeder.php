@@ -17,7 +17,7 @@ class EmployeesTableSeeder extends Seeder
     {
         \DB::beginTransaction();
 
-        for ($i = 0, $n = 0; $i < 9000; $i++, $n++) {
+        for ($i = 0, $n = 0; $i < 12000; $i++, $n++) {
 
             $user  = factory(App\Models\Employee::class, 1)->create()->each(function($user) {
                 $user->is_parent = 1;
@@ -36,24 +36,27 @@ class EmployeesTableSeeder extends Seeder
                 $user3->level = 3;
                 $user3->save();
             });
-            $user4  = factory(App\Models\Employee::class, 1)->create()->each(function($user4) use ($user3) {
+            $user4  = factory(App\Models\Employee::class, 1)->create()->each(function($user4) use ($user3, $i) {
                 $user4->parent_id = $user3->first()->id;
-                $user4->is_parent = 1;
+                $user4->is_parent = ($i % 10 === 0) ? true : false;
                 $user4->level = 4;
                 $user4->save();
             });
-            $user5  = factory(App\Models\Employee::class, 1)->create()->each(function($user5) use ($user4) {
-                $user5->parent_id = $user4->first()->id;
-                $user5->is_parent = 1;
-                $user5->level = 5;
-                $user5->save();
-            });
-            $user6  = factory(App\Models\Employee::class, 1)->create()->each(function($user6) use ($user5) {
-                $user6->parent_id = $user5->first()->id;
-                $user6->is_parent = 0;
-                $user6->level = 6;
-                $user6->save();
-            });
+
+            if($i % 10 === 0) {
+                $user5  = factory(App\Models\Employee::class, 1)->create()->each(function($user5) use ($user4) {
+                    $user5->parent_id = $user4->first()->id;
+                    $user5->is_parent = 1;
+                    $user5->level = 5;
+                    $user5->save();
+                });
+                $user6  = factory(App\Models\Employee::class, 1)->create()->each(function($user6) use ($user5) {
+                    $user6->parent_id = $user5->first()->id;
+                    $user6->is_parent = 0;
+                    $user6->level = 6;
+                    $user6->save();
+                });
+            }
 
             if ($n == self::BATCH_SIZE) {
                 \DB::commit();

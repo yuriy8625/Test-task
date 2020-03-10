@@ -64,7 +64,7 @@ class EmployeeController extends Controller
         }
 
         return view('admin.employee.form', [
-            'employee' => $employee ?? Employee::FIELDS_CREATE,
+            'employee' => $employee ?? ['name' => ''],
             'positions' => $positions,
             'parents' => $parents,
         ]);

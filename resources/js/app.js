@@ -21,8 +21,8 @@ import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css'
 Vue.use(Vuetify)
 
-import BootstrapVue from 'bootstrap-vue'
-Vue.use(BootstrapVue)
+// import BootstrapVue from 'bootstrap-vue'
+// Vue.use(BootstrapVue)
 
 export default new Vuetify({
     icons: {

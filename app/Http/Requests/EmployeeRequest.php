@@ -23,12 +23,15 @@ class EmployeeRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->get('id', null);
+        $ignore = ($id) ? ',' . $id : '';
         return [
-//            'name' => 'required|max:256',
-//            'position_id' => 'required',
-//            'salary' => 'required|min:1000000',
-//            'phone' => 'required',
-//            'email' => 'required',
+            'name' => 'required|max:191',
+            'position_id' => 'required|integer',
+            'salary' => 'required|integer|max:500000',
+            'phone' => 'required|string|unique:employees,phone' . $ignore,
+            'email' => 'required|email',
+            'file' => 'nullable|mimes:jpeg,png|max:5000|dimensions:min_width=300,min_height=300'
         ];
     }
 
@@ -38,9 +41,14 @@ class EmployeeRequest extends FormRequest
             'name.required' => 'Name can not be empty',
             'name.max' => 'Name may not be greater than 256 characters',
             'position_id.required' => 'Position can not be empty',
+            'position_id.integer' => 'Position incorrect',
             'salary.required' => 'Salary can not be empty',
+            'salary.integer' => 'Salary can be integer',
             'Phone.required' => 'Phone can not be empty',
             'email.required' => 'Email can not be empty',
+            'file.mimes' => 'Format file jpg,png Up 5MB, the minimum size of 300x300px',
+            'file.max' => 'Format file jpg,png Up 5MB, the minimum size of 300x300px',
+            'file.dimensions' => 'Format file jpg,png Up 5MB, the minimum size of 300x300px',
         ];
     }
 }

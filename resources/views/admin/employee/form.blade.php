@@ -8,7 +8,7 @@
 @section('content')
     <div id="app" style="padding:20px">
         <form-employee
-            :employee=" @if($employee){{ json_encode($employee)}} @else {{ json_encode(['id' => null]) }} @endif"
+            :employeeBase="{{ json_encode($employee) }}"
             :positions="{{ json_encode($positions) }}"
             :parents="@if($parents) {{ json_encode($parents) }} @endif"></form-employee>
     </div>

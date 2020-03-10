@@ -9,16 +9,6 @@ class Employee extends Model
 
     const API_FIELDS = ['name', 'position_id', 'parent_id', 'salary', 'phone', 'email', 'employment_at', 'admin_created_id', 'admin_updated_id'];
 
-    const FIELDS_CREATE = [
-        'name' => '',
-        'position_id' => null,
-        'parent_id' => null,
-        'salary' => null,
-        'phone' => '',
-        'email' => '',
-        'employment_at' => '',
-    ];
-
     const FILE_PATH = '/uploads/employees/';
 
     protected $guarded = [];
