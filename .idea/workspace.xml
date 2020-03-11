@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8e434d3-a8da-4c49-b0c2-da2e55c98cff" name="Default Changelist" comment="" />
+    <list default="true" id="b8e434d3-a8da-4c49-b0c2-da2e55c98cff" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,30 +27,7 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="task@localhost" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="task@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="task@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="task: schema" type="76f4a085:MysqlImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="task@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="task: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="employees: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -185,18 +165,18 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/public/images" />
+      <recent name="$PROJECT_DIR$/resources/js/components" />
+      <recent name="$PROJECT_DIR$/resources/views/admin" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/components/employee" />
       <recent name="$PROJECT_DIR$/public/css" />
       <recent name="$PROJECT_DIR$/resources/views/admin/employee" />
       <recent name="$PROJECT_DIR$/resources/views/admin" />
       <recent name="$PROJECT_DIR$/resources/views" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/public/images" />
-      <recent name="$PROJECT_DIR$/resources/js/components" />
-      <recent name="$PROJECT_DIR$/resources/views/admin" />
     </key>
   </component>
   <component name="RunManager">
@@ -231,6 +211,8 @@
       <workItem from="1583709297406" duration="609000" />
       <workItem from="1583753518265" duration="22990000" />
       <workItem from="1583866018405" duration="17685000" />
+      <workItem from="1583914814424" duration="572000" />
+      <workItem from="1583915535066" duration="121000" />
     </task>
     <servers />
   </component>
@@ -242,11 +224,11 @@
       <screen x="46" y="25" width="1320" height="743" />
     </state>
     <state x="301" y="58" width="800" height="684" key="#Inspections/46.25.1320.743@46.25.1320.743" timestamp="1583764166293" />
-    <state x="301" y="57" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583874795588">
+    <state x="301" y="57" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583915656020">
       <screen x="46" y="25" width="1320" height="743" />
     </state>
     <state x="299" y="57" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/43.25.1323.743@43.25.1323.743" timestamp="1582666304555" />
-    <state x="301" y="57" key="#com.intellij.execution.impl.EditConfigurationsDialog/46.25.1320.743@46.25.1320.743" timestamp="1583874795588" />
+    <state x="301" y="57" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/46.25.1320.743@46.25.1320.743" timestamp="1583915656020" />
     <state x="424" y="202" width="554" height="395" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583626242007">
       <screen x="46" y="25" width="1320" height="743" />
     </state>
@@ -275,11 +257,15 @@
     </state>
     <state x="576" y="221" width="327" height="348" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/43.25.1323.743@43.25.1323.743" timestamp="1583045704092" />
     <state x="578" y="221" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/46.25.1320.743@46.25.1320.743" timestamp="1583527955032" />
-    <state x="383" y="127" width="647" height="536" key="find.popup" timestamp="1583797713301">
+    <state x="370" y="78" width="662" height="644" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1583915551546">
+      <screen x="46" y="25" width="1320" height="743" />
+    </state>
+    <state x="370" y="78" width="662" height="644" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/46.25.1320.743@46.25.1320.743" timestamp="1583915551546" />
+    <state x="383" y="127" width="647" height="536" key="find.popup" timestamp="1583915722774">
       <screen x="46" y="25" width="1320" height="743" />
     </state>
     <state x="381" y="127" width="647" height="536" key="find.popup/43.25.1323.743@43.25.1323.743" timestamp="1583215921161" />
-    <state x="383" y="127" width="647" height="536" key="find.popup/46.25.1320.743@46.25.1320.743" timestamp="1583797713301" />
+    <state x="383" y="127" width="647" height="536" key="find.popup/46.25.1320.743@46.25.1320.743" timestamp="1583915722774" />
     <state x="370" y="175" key="run.anything.popup" timestamp="1583874697120">
       <screen x="46" y="25" width="1320" height="743" />
     </state>
