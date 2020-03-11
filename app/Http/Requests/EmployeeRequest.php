@@ -26,7 +26,7 @@ class EmployeeRequest extends FormRequest
         $id = $this->get('id', null);
         $ignore = ($id) ? ',' . $id : '';
         return [
-            'name' => 'required|max:191',
+            'name' => 'required|min:2|max:256',
             'position_id' => 'required|integer',
             'salary' => 'required|integer|max:500000',
             'phone' => 'required|string|unique:employees,phone' . $ignore,

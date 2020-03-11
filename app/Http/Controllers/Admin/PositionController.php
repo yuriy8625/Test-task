@@ -38,7 +38,7 @@ class PositionController extends Controller
     public function edit(Request $request, Position $position)
     {
         request()->validate([
-            'name' => 'required|max:191|unique:positions,name,' . $position->id,
+            'name' => 'required|max:256|unique:positions,name,' . $position->id,
         ]);
 
         $position->fill($request->all('name'));

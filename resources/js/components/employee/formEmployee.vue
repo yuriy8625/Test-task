@@ -46,7 +46,7 @@
                 <v-overlay :value="overlay">
                     <v-progress-circular indeterminate size="64"></v-progress-circular>
                 </v-overlay>
-                <ValidationProvider v-slot="{ errors }" name="Name" rules="required|max:191">
+                <ValidationProvider v-slot="{ errors }" name="Name" rules="required|max:256">
                     <v-label>Name*</v-label>
                     <v-text-field
                         v-model="employee.name"
