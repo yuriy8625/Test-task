@@ -2,4 +2,6 @@ node_modules
 vendor
 .env
 .idea
-
+public/css/app.css
+public/js
+public/mix-manifest.json
