@@ -241,7 +241,7 @@
         computed: {
             employmentAt() {
                 this.employee['employment_at'] = this.date;
-                return this.date ? moment(this.date).format('DD.MM.YY') : moment().format('DD.MM.YY')
+                return this.date ? moment(this.date).format('DD.MM.YY') : null
             },
             fileLabel() {
                 if (this.employee.id) {
@@ -258,10 +258,8 @@
             },
         },
         mounted() {
-        console.log(this.$attrs);
-        console.log(this.$attrs.employeebase);
             this.employee = this.$attrs.employeebase
-            this.date = this.employee['employment_at'] || moment().format('DD.MM.YY');
+            this.date = this.employee['employment_at'] || moment().format();
             this.preview = this.employee['photo'] || null;
             new Inputmask("+999(99) 999 99 99").mask(document.getElementById('phone'));
             new Inputmask('decimal', {
