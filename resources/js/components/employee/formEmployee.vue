@@ -241,7 +241,7 @@
         computed: {
             employmentAt() {
                 this.employee['employment_at'] = this.date;
-                return this.date ? moment(this.date).format('DD.MM.YY') : null
+                return this.date ? moment(this.date).format('DD.MM.YY') : moment().format('DD.MM.YY')
             },
             fileLabel() {
                 if (this.employee.id) {
