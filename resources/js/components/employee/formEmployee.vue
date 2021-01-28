@@ -258,6 +258,8 @@
             },
         },
         mounted() {
+        console.log(this.$attrs);
+        console.log(this.$attrs.employeebase);
             this.employee = this.$attrs.employeebase
             this.date = this.employee['employment_at'] || moment().format('DD.MM.YY');
             this.preview = this.employee['photo'] || null;
